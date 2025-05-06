@@ -9,18 +9,14 @@ namespace WpfApp
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Prism.Unity.PrismApplication
-    { 
-        protected override Window CreateShell()
+    public partial class App : Application
+    {
+        protected override void OnStartup(StartupEventArgs e)
         {
-            //Return your main window here
-            return Container.Resolve<MainWindow>();
-        }
+            base.OnStartup(e);
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            //Register your services and views here
-            containerRegistry.RegisterForNavigation<MainWindow>();
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Run();
         }
     }
 
